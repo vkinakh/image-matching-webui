@@ -11,7 +11,7 @@ import numpy as np
 import torch
 from tqdm import tqdm
 
-from . import logger, matchers
+from . import logger, matchers, DEVICE
 from .utils.base_model import dynamic_load
 from .utils.parsers import names_to_pair, names_to_pair_old, parse_retrieval
 
@@ -335,7 +335,7 @@ def match_from_paths(
         logger.info("Skipping the matching.")
         return
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = DEVICE
     Model = dynamic_load(matchers, conf["model"]["name"])
     model = Model(conf["model"]).eval().to(device)
 

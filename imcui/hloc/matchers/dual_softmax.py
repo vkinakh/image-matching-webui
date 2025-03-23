@@ -27,7 +27,7 @@ def dual_softmax_matcher(
     )
     mask = mask.cpu().numpy()
     matches0 = np.ones((B, P.shape[-2]), dtype=int) * (-1)
-    scores0 = np.zeros((B, P.shape[-2]), dtype=float)
+    scores0 = np.zeros((B, P.shape[-2]), dtype=np.float32)
     matches0[:, mask[:, 1]] = mask[:, 2]
     tmp_P = P.cpu().numpy()
     scores0[:, mask[:, 1]] = tmp_P[mask[:, 0], mask[:, 1], mask[:, 2]]

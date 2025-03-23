@@ -5,7 +5,7 @@ import numpy as np
 import torch
 import torchvision.transforms as tfm
 
-from .. import MODEL_REPO_ID, logger
+from .. import MODEL_REPO_ID, logger, DEVICE
 from ..utils.base_model import BaseModel
 
 duster_path = Path(__file__).parent / "../../third_party/dust3r"
@@ -17,7 +17,7 @@ from dust3r.inference import inference
 from dust3r.model import AsymmetricCroCo3DStereo
 from dust3r.utils.geometry import find_reciprocal_matches, xy_grid
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class Duster(BaseModel):

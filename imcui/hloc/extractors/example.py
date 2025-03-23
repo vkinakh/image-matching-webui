@@ -3,7 +3,7 @@ from pathlib import Path
 
 import torch
 
-from .. import logger
+from .. import logger, DEVICE
 from ..utils.base_model import BaseModel
 
 example_path = Path(__file__).parent / "../../third_party/example"
@@ -11,7 +11,7 @@ sys.path.append(str(example_path))
 
 # import some modules here
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class Example(BaseModel):

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import torch
 
-from .. import MODEL_REPO_ID, logger
+from .. import MODEL_REPO_ID, logger, DEVICE
 
 from ..utils.base_model import BaseModel
 
@@ -13,7 +13,7 @@ from lanet.network_v0.model import PointModel
 
 lanet_path = Path(__file__).parent / "../../third_party/lanet"
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class LANet(BaseModel):

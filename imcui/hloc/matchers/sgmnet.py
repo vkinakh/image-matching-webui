@@ -4,7 +4,7 @@ from pathlib import Path
 
 import torch
 
-from .. import MODEL_REPO_ID, logger
+from .. import MODEL_REPO_ID, logger, DEVICE
 from ..utils.base_model import BaseModel
 
 sgmnet_path = Path(__file__).parent / "../../third_party/SGMNet"
@@ -12,7 +12,7 @@ sys.path.append(str(sgmnet_path))
 
 from sgmnet import matcher as SGM_Model
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class SGMNet(BaseModel):

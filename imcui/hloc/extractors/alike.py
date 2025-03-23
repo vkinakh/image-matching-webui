@@ -3,7 +3,7 @@ from pathlib import Path
 
 import torch
 
-from .. import MODEL_REPO_ID, logger
+from .. import MODEL_REPO_ID, logger, DEVICE
 
 from ..utils.base_model import BaseModel
 
@@ -12,7 +12,7 @@ sys.path.append(str(alike_path))
 from alike import ALike as Alike_
 from alike import configs
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class Alike(BaseModel):

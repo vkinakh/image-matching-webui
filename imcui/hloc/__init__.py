@@ -60,7 +60,18 @@ else:
                 s,
             )
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+def get_device() -> str:
+    if torch.cuda.is_available():
+        return "cuda"
+
+    if torch.backends.mps.is_available():
+        return "mps"
+
+    return "cpu"
+
+
+DEVICE = get_device()
 
 # model hub: https://huggingface.co/Realcat/imcui_checkpoints
 MODEL_REPO_ID = "Realcat/imcui_checkpoints"

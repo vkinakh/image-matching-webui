@@ -14,14 +14,14 @@ import torchvision.transforms.functional as F
 from scipy.spatial import KDTree
 from tqdm import tqdm
 
-from . import logger, matchers
+from . import logger, matchers, DEVICE
 from .extract_features import read_image, resize_image
 from .match_features import find_unique_new_pairs
 from .utils.base_model import dynamic_load
 from .utils.io import list_h5_names
 from .utils.parsers import names_to_pair, parse_retrieval
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = DEVICE
 
 confs = {
     # Best quality but loads of points. Only use for small scenes
@@ -564,7 +564,7 @@ def match_dense(
     match_path: Path,  # out
     existing_refs: Optional[List] = [],
 ):
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = DEVICE
     Model = dynamic_load(matchers, conf["model"]["name"])
     model = Model(conf["model"]).eval().to(device)
 

@@ -13,7 +13,7 @@ import torch
 import torchvision.transforms.functional as F
 from tqdm import tqdm
 
-from . import extractors, logger
+from . import extractors, logger, DEVICE
 from .utils.base_model import dynamic_load
 from .utils.io import list_h5_names, read_image
 from .utils.parsers import parse_image_lists
@@ -457,7 +457,7 @@ def extract(model, image_0, conf):
         "interpolation": "cv2_area",
     }
     conf = SimpleNamespace(**{**default_conf, **conf})
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = DEVICE
 
     def preprocess(image: np.ndarray, conf: SimpleNamespace):
         image = image.astype(np.float32, copy=False)
@@ -538,7 +538,7 @@ def main(
         logger.info("Skipping the extraction.")
         return feature_path
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = DEVICE
     Model = dynamic_load(extractors, conf["model"]["name"])
     model = Model(conf["model"]).eval().to(device)
 

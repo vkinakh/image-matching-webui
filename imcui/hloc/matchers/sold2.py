@@ -1,9 +1,8 @@
 import sys
 from pathlib import Path
 
-import torch
 
-from .. import MODEL_REPO_ID, logger
+from .. import MODEL_REPO_ID, logger, DEVICE
 from ..utils.base_model import BaseModel
 
 sold2_path = Path(__file__).parent / "../../third_party/SOLD2"
@@ -11,7 +10,7 @@ sys.path.append(str(sold2_path))
 
 from sold2.model.line_matcher import LineMatcher
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class SOLD2(BaseModel):

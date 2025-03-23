@@ -4,14 +4,14 @@ from pathlib import Path
 import torch
 from PIL import Image
 
-from .. import MODEL_REPO_ID, logger
+from .. import MODEL_REPO_ID, logger, DEVICE
 from ..utils.base_model import BaseModel
 
 roma_path = Path(__file__).parent / "../../third_party/RoMa"
 sys.path.append(str(roma_path))
 from romatch.models.model_zoo import roma_model
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = DEVICE
 
 
 class Roma(BaseModel):
